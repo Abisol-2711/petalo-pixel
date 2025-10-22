@@ -1,9 +1,10 @@
 import './App.css'
+import AppRouter from './routes/AppRoutes'
 
 function App() {
   return (
     <>
-      <h1>Pétalo & Pixel</h1>
+      <AppRouter />
     </>
   )
 }
