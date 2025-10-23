@@ -39,6 +39,7 @@ function Footer() {
                 <a
                   href="mailto:lila@petalopixel.com"
                   className="hover:text-[#2D6A4F] transition-colors"
+                  aria-label="Enviar email a sol@petalopixel.com"
                 >
                   sol@petalopixel.com
                 </a>
@@ -60,6 +61,7 @@ function Footer() {
                 <a
                   href="tel:+5491155551111"
                   className="hover:text-[#2D6A4F] transition-colors"
+                  aria-label="Llamar al +54 9 11 5555 1111"
                 >
                   +54 9 11 5555‑1111
                 </a>
@@ -75,6 +77,7 @@ function Footer() {
               <a
                 href="#"
                 className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                aria-label="Ir a Facebook"
               >
                 <svg
                   className="w-5 h-5"
@@ -87,6 +90,7 @@ function Footer() {
               <a
                 href="#"
                 className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                aria-label="Ir a Instagram"
               >
                 <svg
                   className="w-5 h-5"

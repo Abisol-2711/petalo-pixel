@@ -1,10 +1,6 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
-
 function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Header />
+    <div id="main" className="min-h-screen flex flex-col bg-white">
 
       <section className="relative bg-linear-to-br from-[#F3F4F6] via-white to-[#F3F4F6] py-20 lg:py-32 overflow-hidden">
         <div className="absolute top-10 right-10 w-72 h-72 bg-[#2D6A4F]/5 rounded-full blur-3xl"></div>
@@ -66,7 +62,7 @@ function Home() {
             <div className="relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="/src/assets/hero.jpg"
+                  src="/hero.jpg"
                   alt="Arreglo floral Pétalo & Pixel"
                   className="w-full h-full object-cover aspect-square"
                 />
@@ -162,7 +158,6 @@ function Home() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }
