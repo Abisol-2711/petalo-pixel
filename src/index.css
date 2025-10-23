@@ -86,7 +86,7 @@ div {
 
 a {
   font-weight: 500;
-  color: var(--primary);
+  /* color: var(--primary); */
   text-decoration: none;
   transition: color 0.3s ease;
 }
