@@ -1,8 +1,8 @@
 import { supabase } from "@/supabase/config"
 import { useEffect, useState } from "react"
-import type { Product } from "@/interfaces/products"
+import type { Product } from "@/interfaces"
 
-
+  
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState<boolean>(true)

@@ -1,11 +1,8 @@
 import ProductCard from '@/components/ProductCard'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 
 function Catalog() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Header />
+    <div id="main" className="min-h-screen flex flex-col bg-white">
 
       <section className="bg-linear-to-br from-[#F3F4F6] via-white to-[#F3F4F6] py-16 border-b border-gray-200">
         <div className="container mx-auto px-4 lg:px-8">
@@ -99,7 +96,6 @@ function Catalog() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }
