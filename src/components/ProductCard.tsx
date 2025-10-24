@@ -5,32 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { useProducts } from '@/hooks/useProducts'
+import type { ProductProps } from '@/interfaces'
 
-function ProductCard() {
-  const { products, loading, error } = useProducts()
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-20">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-[#2D6A4F] border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-600 font-medium">Cargando productos...</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center py-20">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
-          <p className="text-red-600 font-medium">Error: {error}</p>
-        </div>
-      </div>
-    )
-  }
-
+function ProductCard({ products }: { products: ProductProps[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {products.map((product) => (
