@@ -63,6 +63,17 @@ function ProductCard({ products }: { products: ProductProps[] }) {
               </div>
             )}
 
+            <div className="flex flex-wrap gap-2 pt-2">
+              {product.size_tags.slice(0, 3).map((tag, index) => (
+                <span
+                  key={index}
+                  className="px-2 py-1 bg-[#F3F4F6] text-xs text-gray-700 rounded-md"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
             <button className="w-full mt-4 px-6 py-3 bg-[#2D6A4F] text-white rounded-full hover:bg-[#1a4030] transition-all duration-300 font-medium hover:shadow-lg transform hover:-translate-y-0.5">
               Ver Detalles
             </button>

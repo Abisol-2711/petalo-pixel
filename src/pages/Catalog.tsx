@@ -1,5 +1,7 @@
 import Categories from '@/components/Categories'
+import ColorFilter from '@/components/Filters/ColorFilter'
 import OccasionFilter from '@/components/Filters/OccasionFilter'
+import SizeFilter from '@/components/Filters/SizeFilter'
 import ProductCard from '@/components/ProductCard'
 import { useFilters } from '@/hooks/useFilters'
 import { useProducts } from '@/hooks/useProducts'
@@ -11,12 +13,33 @@ function Catalog() {
     selectedSizes,
     toggleOccasion,
     clearOccasions,
+    toggleColor,
+    clearColors,
+    toggleSize,
+    clearSizes,
+    clearAll,
   } = useFilters()
 
   const { products, loading, error } = useProducts()
 
   const occasionOptions = Array.from(
     new Set(products.flatMap((p) => p.occasion_tags ?? []))
+  ).sort()
+
+  const colorOptions = Array.from(
+    new Set(products.flatMap((p) => p.color_tags ?? []))
+  ).sort()
+
+  const colorMap = {
+    rosa: '#F472B6',
+    verde: '#22C55E',
+    blanco: '#FFFFFF',
+    amarillo: '#FACC15',
+    // si alguna opción no está, ColorFilter usará el string tal cual
+  } as Record<string, string>
+
+  const sizeOptions = Array.from(
+    new Set(products.flatMap((p) => p.size_tags ?? []))
   ).sort()
 
   const filteredProducts = products.filter((product) => {
@@ -88,6 +111,31 @@ function Catalog() {
             onToggle={toggleOccasion}
             onClear={clearOccasions}
           />
+
+          <ColorFilter
+            title="Filtrar por Color"
+            options={colorOptions}
+            selected={selectedColors}
+            onToggle={toggleColor}
+            onClear={clearColors}
+            colorMap={colorMap}
+          />
+
+          <SizeFilter
+            title="Filtrar por Tamaño"
+            options={sizeOptions}
+            selected={selectedSizes}
+            onToggle={toggleSize}
+            onClear={clearSizes}
+            pill={true}
+          />
+
+          <button
+            onClick={clearAll}
+            className="ml-auto text-sm text-gray-500 hover:underline"
+          >
+            Limpiar todos los Filtros
+          </button>
 
           <div className="flex gap-2">
             <button className="p-2.5 bg-[#2D6A4F] text-white rounded-lg hover:bg-[#1a4030] transition-colors">
