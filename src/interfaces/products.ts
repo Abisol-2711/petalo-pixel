@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductProps {
     id: string,
     slug: string,
     name: string,
@@ -8,6 +8,7 @@ export interface Product {
     category_id: string,
     color_tags: string[],
     occasion_tags: string[],
+    size_tags: string[],
     is_active: boolean,
     created_at: string,
 }
