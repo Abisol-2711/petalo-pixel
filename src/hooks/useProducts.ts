@@ -1,10 +1,10 @@
 import { supabase } from "@/supabase/config"
 import { useEffect, useState } from "react"
-import type { Product } from "@/interfaces"
+import type { ProductProps } from "@/interfaces"
 
   
 export function useProducts() {
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<ProductProps[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
