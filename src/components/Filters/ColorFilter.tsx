@@ -26,7 +26,7 @@ const ColorFilter = ({
                 aria-pressed={selected.has(option)}
                 onClick={() => onToggle(option)}
                 style={{ backgroundColor: colorMap?.[option] ?? option }}
-                className={`w-8 h-8 rounded-full border-2 ${
+                className={`w-8 h-8 rounded-full ${
                   selected.has(option)
                     ? 'ring-2 ring-offset-2 ring-[#2D6A4F]'
                     : 'border-transparent'

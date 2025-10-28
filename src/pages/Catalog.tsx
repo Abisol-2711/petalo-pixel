@@ -1,46 +1,31 @@
 import Categories from '@/components/Categories'
-import ColorFilter from '@/components/Filters/ColorFilter'
-import OccasionFilter from '@/components/Filters/OccasionFilter'
-import SizeFilter from '@/components/Filters/SizeFilter'
+import Filters from '@/components/Filters/Filters'
 import ProductCard from '@/components/ProductCard'
-import { useFilters } from '@/hooks/useFilters'
 import { useProducts } from '@/hooks/useProducts'
+import { useFilters } from '@/hooks/useFilters'
 
 function Catalog() {
+  const { products, loading, error } = useProducts()
+
   const {
     selectedOccasions,
     selectedColors,
     selectedSizes,
     toggleOccasion,
-    clearOccasions,
     toggleColor,
-    clearColors,
     toggleSize,
+    clearOccasions,
+    clearColors,
     clearSizes,
     clearAll,
   } = useFilters()
 
-  const { products, loading, error } = useProducts()
-
-  const occasionOptions = Array.from(
-    new Set(products.flatMap((p) => p.occasion_tags ?? []))
-  ).sort()
-
-  const colorOptions = Array.from(
-    new Set(products.flatMap((p) => p.color_tags ?? []))
-  ).sort()
-
-  const colorMap = {
-    rosa: '#F472B6',
-    verde: '#22C55E',
-    blanco: '#FFFFFF',
-    amarillo: '#FACC15',
-    // si alguna opción no está, ColorFilter usará el string tal cual
-  } as Record<string, string>
-
-  const sizeOptions = Array.from(
-    new Set(products.flatMap((p) => p.size_tags ?? []))
-  ).sort()
+  console.log('🔍 Debug Filters:', {
+    totalProducts: products.length,
+    selectedOccasions: Array.from(selectedOccasions),
+    selectedColors: Array.from(selectedColors),
+    selectedSizes: Array.from(selectedSizes),
+  })
 
   const filteredProducts = products.filter((product) => {
     const matchesOccasion =
@@ -58,87 +43,56 @@ function Catalog() {
     return matchesOccasion && matchesColor && matchesSize
   })
 
+  console.log('✅ Filtered Products:', filteredProducts.length)
+
   if (loading) {
     return (
-      <div className="flex justify-center items-center py-20">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-[#2D6A4F] border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-600 font-medium">Cargando productos...</p>
-        </div>
+      <div className="flex flex-col items-center gap-4 mt-20">
+        <div className="w-12 h-12 border-4 border-[#2D6A4F] border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-gray-600 font-medium">Cargando productos...</p>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="flex justify-center items-center py-20">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
-          <p className="text-red-600 font-medium">Error: {error}</p>
-        </div>
+      <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
+        <p className="text-red-600 font-medium">Error: {error}</p>
       </div>
     )
   }
 
   return (
-    <div id="main" className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white">
       <section className="bg-linear-to-br from-[#F3F4F6] via-white to-[#F3F4F6] py-16 border-b border-gray-200">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-block mb-4">
-              <span className="px-4 py-2 bg-[#2D6A4F]/10 text-[#2D6A4F] rounded-full text-sm font-medium">
-                🌸 Colección Completa
-              </span>
-            </div>
-            <h1 className="text-5xl font-bold text-[#0B0B0B] mb-4 font-['Josefin_Sans']">
-              Catálogo de Flores
-            </h1>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Explora nuestra colección de arreglos florales únicos, diseñados
-              con pasión y cuidado para cada ocasión especial.
-            </p>
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <div className="inline-block mb-4">
+            <span className="px-4 py-2 bg-[#2D6A4F]/10 text-[#2D6A4F] rounded-full text-sm font-medium">
+              🌸 Colección Completa
+            </span>
           </div>
+          <h1 className="text-5xl font-bold text-[#0B0B0B] mb-4 font-['Josefin_Sans']">
+            Catálogo de Flores
+          </h1>
+          <p className="text-lg text-gray-600 leading-relaxed">
+            Explora nuestra colección de arreglos florales únicos, diseñados con
+            pasión y cuidado para cada ocasión especial.
+          </p>
         </div>
       </section>
 
-      <section className="bg-white py-8 border-b border-gray-200 sticky top-20 z-40 backdrop-blur-sm">
+      <section className="py-8 border-b border-gray-200 flex justify-center">
         <Categories />
+      </section>
 
-        <div className="flex items-center gap-4">
-          <OccasionFilter
-            title="Filtrar por Ocasión"
-            options={occasionOptions}
-            selected={selectedOccasions}
-            onToggle={toggleOccasion}
-            onClear={clearOccasions}
-          />
-
-          <ColorFilter
-            title="Filtrar por Color"
-            options={colorOptions}
-            selected={selectedColors}
-            onToggle={toggleColor}
-            onClear={clearColors}
-            colorMap={colorMap}
-          />
-
-          <SizeFilter
-            title="Filtrar por Tamaño"
-            options={sizeOptions}
-            selected={selectedSizes}
-            onToggle={toggleSize}
-            onClear={clearSizes}
-            pill={true}
-          />
-
-          <button
-            onClick={clearAll}
-            className="ml-auto text-sm text-gray-500 hover:underline"
-          >
-            Limpiar todos los Filtros
-          </button>
-
+      <section className="py-4 border-b border-gray-200">
+        <div className="container mx-auto px-4 lg:px-8 flex justify-end items-center gap-3">
+          <span className="text-sm text-gray-600 font-medium">Vista:</span>
           <div className="flex gap-2">
-            <button className="p-2.5 bg-[#2D6A4F] text-white rounded-lg hover:bg-[#1a4030] transition-colors">
+            <button
+              className="p-2.5 bg-[#2D6A4F] text-white rounded-lg hover:bg-[#1a4030] transition-colors"
+              title="Vista de cuadrícula"
+            >
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -153,7 +107,10 @@ function Catalog() {
                 />
               </svg>
             </button>
-            <button className="p-2.5 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-[#F3F4F6] transition-colors">
+            <button
+              className="p-2.5 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-[#F3F4F6] transition-colors"
+              title="Vista de lista"
+            >
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -172,9 +129,37 @@ function Catalog() {
         </div>
       </section>
 
-      <section className="py-12 bg-white grow">
-        <div className="container mx-auto px-4 lg:px-8">
-          <ProductCard products={filteredProducts} />
+      <section className="flex mx-auto px-4 lg:px-8 py-12 gap-8 lg:grid lg:grid-cols-[280px_1fr]">
+        <aside>
+          <Filters
+            selectedOccasions={selectedOccasions}
+            selectedColors={selectedColors}
+            selectedSizes={selectedSizes}
+            toggleOccasion={toggleOccasion}
+            toggleColor={toggleColor}
+            toggleSize={toggleSize}
+            clearOccasions={clearOccasions}
+            clearColors={clearColors}
+            clearSizes={clearSizes}
+            clearAll={clearAll}
+          />
+        </aside>
+
+        <div>
+          {
+            filteredProducts.length === 0 ? (
+              <div className="text-center py-20">
+                <h2 className="text-2xl font-bold text-gray-700 mb-4">
+                  No se encontraron productos
+                </h2>
+                <p className="text-gray-600">
+                  Intenta ajustar los filtros o vuelve a la categoría completa.
+                </p>
+              </div>
+            ) : (
+              <ProductCard products={filteredProducts} />
+            )
+          }
         </div>
       </section>
     </div>
