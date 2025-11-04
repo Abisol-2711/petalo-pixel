@@ -1,19 +1,41 @@
-const Categories = () => {
+// components/Categories.tsx
+import type { CategoriesProps } from '@/interfaces/categories'
+
+const Categories = ({
+  options,
+  selected,
+  onSelect,
+  onClear,
+}: CategoriesProps) => {
   return (
     <div className="flex flex-wrap gap-3">
-      <button className="px-5 py-2.5 bg-[#2D6A4F] text-white rounded-full font-medium text-sm hover:bg-[#1a4030] transition-all duration-300">
+      <button
+        onClick={onClear}
+        className={`px-5 py-2.5 rounded-full font-medium text-sm border transition-all duration-300 ${
+          selected === null
+            ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]'
+            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+        }`}
+      >
         Todos
       </button>
-      <button className="px-5 py-2.5 bg-white border border-gray-300 text-gray-700 rounded-full font-medium text-sm hover:bg-[#F3F4F6] transition-all duration-300">
-        Minimal
-      </button>
-      <button className="px-5 py-2.5 bg-white border border-gray-300 text-gray-700 rounded-full font-medium text-sm hover:bg-[#F3F4F6] transition-all duration-300">
-        Cumpleaños
-      </button>
-      <button className="px-5 py-2.5 bg-white border border-gray-300 text-gray-700 rounded-full font-medium text-sm hover:bg-[#F3F4F6] transition-all duration-300">
-        Aniversarios
-      </button>
+
+      {options.map((opt) => (
+        <button
+          key={opt.id || opt.value}
+          onClick={() => onSelect(opt.value)}
+          className={`px-5 py-2.5 rounded-full font-medium text-sm border transition-all duration-300 ${
+            selected === opt.value
+              ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]'
+              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+          }`}
+          aria-pressed={selected === opt.value}
+        >
+          {opt.label}
+        </button>
+      ))}
     </div>
   )
 }
+
 export default Categories

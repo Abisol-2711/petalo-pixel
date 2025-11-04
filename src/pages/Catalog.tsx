@@ -3,6 +3,8 @@ import Filters from '@/components/Filters/Filters'
 import ProductCard from '@/components/ProductCard'
 import { useProducts } from '@/hooks/useProducts'
 import { useFilters } from '@/hooks/useFilters'
+import { useCategory } from '@/hooks/useCategory'
+import { useCategoriesData } from '@/hooks/useCategoriesData'
 
 function Catalog() {
   const { products, loading, error } = useProducts()
@@ -20,14 +22,22 @@ function Catalog() {
     clearAll,
   } = useFilters()
 
-  console.log('🔍 Debug Filters:', {
-    totalProducts: products.length,
-    selectedOccasions: Array.from(selectedOccasions),
-    selectedColors: Array.from(selectedColors),
-    selectedSizes: Array.from(selectedSizes),
-  })
+  const { selectedCategory, selectCategory, clearCategory } = useCategory()
+  const { categories } = useCategoriesData()
+
+  const options = categories.map((c) => ({
+    label: c.name,
+    value: c.slug,
+    id: c.id,
+  }))
+
+  const categoryMap = new Map(categories.map((c) => [c.slug, c.id]))
 
   const filteredProducts = products.filter((product) => {
+    const matchesCategory =
+      selectedCategory === null ||
+      product.category_id === categoryMap.get(selectedCategory)
+
     const matchesOccasion =
       selectedOccasions.size === 0 ||
       product.occasion_tags.some((tag) => selectedOccasions.has(tag))
@@ -40,10 +50,8 @@ function Catalog() {
       selectedSizes.size === 0 ||
       product.size_tags.some((tag) => selectedSizes.has(tag))
 
-    return matchesOccasion && matchesColor && matchesSize
+    return matchesCategory && matchesOccasion && matchesColor && matchesSize
   })
-
-  console.log('✅ Filtered Products:', filteredProducts.length)
 
   if (loading) {
     return (
@@ -82,7 +90,12 @@ function Catalog() {
       </section>
 
       <section className="py-8 border-b border-gray-200 flex justify-center">
-        <Categories />
+        <Categories
+          options={options}
+          selected={selectedCategory}
+          onSelect={selectCategory}
+          onClear={clearCategory}
+        />
       </section>
 
       <section className="py-4 border-b border-gray-200">
@@ -146,20 +159,18 @@ function Catalog() {
         </aside>
 
         <div>
-          {
-            filteredProducts.length === 0 ? (
-              <div className="text-center py-20">
-                <h2 className="text-2xl font-bold text-gray-700 mb-4">
-                  No se encontraron productos
-                </h2>
-                <p className="text-gray-600">
-                  Intenta ajustar los filtros o vuelve a la categoría completa.
-                </p>
-              </div>
-            ) : (
-              <ProductCard products={filteredProducts} />
-            )
-          }
+          {filteredProducts.length === 0 ? (
+            <div className="text-center py-20">
+              <h2 className="text-2xl font-bold text-gray-700 mb-4">
+                No se encontraron productos
+              </h2>
+              <p className="text-gray-600">
+                Intenta ajustar los filtros o vuelve a la categoría completa.
+              </p>
+            </div>
+          ) : (
+            <ProductCard products={filteredProducts} />
+          )}
         </div>
       </section>
     </div>
