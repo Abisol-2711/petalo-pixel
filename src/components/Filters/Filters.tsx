@@ -51,18 +51,20 @@ const Filters = ({
   ).sort()
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-6">
-      <h2 className="text-lg font-bold text-[#0B0B0B] font-['Poppins']">
-        Filtros
-      </h2>
-      <button
-        onClick={clearAll}
-        className="text-sm text-[#2D6A4F] hover:text-[#1a4030] font-medium transition-colors"
-      >
-        Limpiar todo
-      </button>
+    <div className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 space-y-4 md:space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-base md:text-lg font-bold text-[#0B0B0B] font-['Poppins']">
+          Filtros
+        </h2>
+        <button
+          onClick={clearAll}
+          className="text-xs md:text-sm text-[#2D6A4F] hover:text-[#1a4030] font-medium transition-colors"
+        >
+          Limpiar todo
+        </button>
+      </div>
 
-      <div className="pb-6 border-b border-gray-200">
+      <div className="pb-4 md:pb-6 border-b border-gray-200">
         <OccasionFilter
           title="Filtrar por Ocasión"
           options={occasionOptions}
@@ -72,7 +74,7 @@ const Filters = ({
         />
       </div>
 
-      <div className="pb-6 border-b border-gray-200">
+      <div className="pb-4 md:pb-6 border-b border-gray-200">
         <ColorFilter
           title="Filtrar por Color"
           options={colorOptions}
