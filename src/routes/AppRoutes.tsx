@@ -4,6 +4,7 @@ import Home from '@/pages/Home'
 import About from '@/pages/About'
 import Layout from '@/layout/Layout'
 import NotFound from '@/pages/NotFound'
+import Product from '@/pages/Product'
 
 function AppRouter() {
   return (
@@ -11,6 +12,7 @@ function AppRouter() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/catalogo" element={<Catalog />} />
+        <Route path="/producto/:slug" element={<Product />} />
         <Route path="/sobre" element={<About />} />
       </Route>
       <Route path="*" element={<NotFound />} />

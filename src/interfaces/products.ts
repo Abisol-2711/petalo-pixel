@@ -11,4 +11,7 @@ export interface ProductProps {
     size_tags: string[],
     is_active: boolean,
     created_at: string,
+    categories?: {
+        name: string
+    }
 }
