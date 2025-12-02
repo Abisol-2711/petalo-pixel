@@ -98,7 +98,7 @@ function Catalog() {
         />
       </section>
 
-      <section className="py-4 border-b border-gray-200">
+      {/* <section className="py-4 border-b border-gray-200">
         <div className="container mx-auto px-4 lg:px-8 flex justify-end items-center gap-3">
           <span className="text-sm text-gray-600 font-medium">Vista:</span>
           <div className="flex gap-2">
@@ -140,7 +140,7 @@ function Catalog() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="flex mx-auto px-4 lg:px-8 py-12 gap-8 lg:grid lg:grid-cols-[280px_1fr]">
         <aside>

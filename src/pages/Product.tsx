@@ -254,7 +254,7 @@ const Product = () => {
               </div>
               <button
                 disabled={!selectedSize || !selectedColor}
-                className={`flex-1 px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 ${
+                className={`cursor-pointer flex-1 px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 ${
                   selectedSize && selectedColor
                     ? 'bg-[#2D6A4F] text-white hover:bg-[#1a4030]'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'

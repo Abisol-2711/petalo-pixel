@@ -1,4 +1,3 @@
-// components/Categories.tsx
 import type { CategoriesProps } from '@/interfaces/categories'
 
 const Categories = ({
