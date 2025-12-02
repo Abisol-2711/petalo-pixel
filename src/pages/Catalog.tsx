@@ -72,24 +72,24 @@ function Catalog() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <section className="bg-linear-to-br from-[#F3F4F6] via-white to-[#F3F4F6] py-16 border-b border-gray-200">
+      <section className="bg-linear-to-br from-[#F3F4F6] via-white to-[#F3F4F6] py-8 md:py-12 lg:py-16 border-b border-gray-200">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
-          <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-[#2D6A4F]/10 text-[#2D6A4F] rounded-full text-sm font-medium">
+          <div className="inline-block mb-3 md:mb-4">
+            <span className="px-3 py-1.5 md:px-4 md:py-2 bg-[#2D6A4F]/10 text-[#2D6A4F] rounded-full text-xs md:text-sm font-medium">
               🌸 Colección Completa
             </span>
           </div>
-          <h1 className="text-5xl font-bold text-[#0B0B0B] mb-4 font-['Josefin_Sans']">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0B0B0B] mb-3 md:mb-4 font-['Josefin_Sans']">
             Catálogo de Flores
           </h1>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 leading-relaxed">
             Explora nuestra colección de arreglos florales únicos, diseñados con
             pasión y cuidado para cada ocasión especial.
           </p>
         </div>
       </section>
 
-      <section className="py-8 border-b border-gray-200 flex justify-center">
+      <section className="py-6 md:py-8 border-b border-gray-200 flex justify-center">
         <Categories
           options={options}
           selected={selectedCategory}
@@ -142,8 +142,8 @@ function Catalog() {
         </div>
       </section> */}
 
-      <section className="flex mx-auto px-4 lg:px-8 py-12 gap-8 lg:grid lg:grid-cols-[280px_1fr]">
-        <aside>
+      <section className="container mx-auto px-4 lg:px-8 py-8 md:py-12 flex flex-col lg:grid lg:grid-cols-[280px_1fr] gap-6 md:gap-8">
+        <aside className="lg:sticky lg:top-24 lg:self-start">
           <Filters
             selectedOccasions={selectedOccasions}
             selectedColors={selectedColors}
@@ -160,11 +160,11 @@ function Catalog() {
 
         <div>
           {filteredProducts.length === 0 ? (
-            <div className="text-center py-20">
-              <h2 className="text-2xl font-bold text-gray-700 mb-4">
+            <div className="text-center py-12 md:py-20">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-700 mb-3 md:mb-4">
                 No se encontraron productos
               </h2>
-              <p className="text-gray-600">
+              <p className="text-sm md:text-base text-gray-600">
                 Intenta ajustar los filtros o vuelve a la categoría completa.
               </p>
             </div>
