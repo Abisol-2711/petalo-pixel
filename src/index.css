@@ -133,8 +133,8 @@ a:focus,
 a:focus-visible,
 select:focus,
 select:focus-visible,
-[role="button"]:focus,
-[role="button"]:focus-visible {
+[role='button']:focus,
+[role='button']:focus-visible {
   outline: 3px solid var(--ring);
   outline-offset: 3px;
   border-radius: 0.5rem;
