@@ -26,13 +26,11 @@ const SizeFilter = ({
                   type="button"
                   aria-pressed={active}
                   onClick={() => onToggle(option)}
-                  className={`px-3 py-1 text-sm font-medium transition-all
-                    ${
-                      active
-                        ? 'bg-[#2D6A4F] text-white border border-[#2D6A4F] shadow-sm'
-                        : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                    } rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F] focus-visible:ring-offset-2
-          `}
+                  className={`px-3 py-1 text-sm font-medium transition-all rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F] focus-visible:ring-offset-2 ${
+                    active
+                      ? 'bg-[#2D6A4F] text-white border border-[#2D6A4F] shadow-sm'
+                      : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                  }`}
                 >
                   {option}
                 </button>

@@ -32,11 +32,6 @@ function Header() {
               Catalogo
             </Link>
           </li>
-          <li>
-            <button className="px-6 py-2.5 bg-[#2D6A4F] text-white rounded-full hover:bg-[#1a4030] transition-all duration-300 hover:shadow-lg hover:scale-105 font-medium">
-              Shop Now
-            </button>
-          </li>
         </ul>
       </nav>
     </header>

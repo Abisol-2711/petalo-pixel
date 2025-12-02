@@ -20,7 +20,7 @@ function Footer() {
             <div className="space-y-2 text-gray-600 text-sm">
               <p className="flex items-center gap-2">
                 <span className="font-medium text-[#2D6A4F]">Fundadora:</span>
-                <span>Sol Rázuri</span>
+                <span>Sol</span>
               </p>
               <p className="flex items-center gap-2">
                 <svg

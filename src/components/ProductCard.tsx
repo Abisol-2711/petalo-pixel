@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import type { ProductProps } from '@/interfaces'
+import { Link } from 'react-router'
 
 function ProductCard({ products }: { products: ProductProps[] }) {
   return (
@@ -74,9 +75,12 @@ function ProductCard({ products }: { products: ProductProps[] }) {
               ))}
             </div>
 
-            <button className="w-full mt-4 px-6 py-3 bg-[#2D6A4F] text-white rounded-full hover:bg-[#1a4030] transition-all duration-300 font-medium hover:shadow-lg transform hover:-translate-y-0.5">
+            <Link
+              to={`/producto/${product.slug}`}
+              className="w-full mt-4 px-6 py-3 bg-[#2D6A4F] text-white rounded-full hover:bg-[#1a4030] transition-all duration-300 font-medium hover:shadow-lg transform hover:-translate-y-0.5 text-center"
+            >
               Ver Detalles
-            </button>
+            </Link>
           </CardHeader>
         </Card>
       ))}
