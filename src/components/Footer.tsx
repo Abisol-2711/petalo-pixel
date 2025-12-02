@@ -1,8 +1,8 @@
 function Footer() {
   return (
-    <footer className="w-full bg-[#F3F4F6] border-t border-gray-200 mt-20">
-      <div className="container mx-auto px-4 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <footer className="w-full bg-[#F3F4F6] border-t border-gray-200 mt-12 md:mt-20">
+      <div className="container mx-auto px-4 lg:px-8 py-8 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
           <div className="space-y-4">
             <h2 className="text-2xl font-bold bg-linear-to-r from-[#2D6A4F] to-[#52b788] bg-clip-text text-transparent font-['Josefin_Sans']">
               Pétalo & Pixel
